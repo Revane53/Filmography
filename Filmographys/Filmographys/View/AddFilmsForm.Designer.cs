@@ -1,6 +1,6 @@
 ﻿namespace Filmographys.View
 {
-    partial class AddFilms
+    partial class AddFilmsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -201,6 +201,7 @@
             this.Choosing_Category_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Choosing_Category_ComboBox.FormattingEnabled = true;
             this.Choosing_Category_ComboBox.Items.AddRange(new object[] {
+            "Cтраны показа",
             "Президенты студий",
             "Режиссеры",
             "Актеры",
@@ -325,17 +326,19 @@
             // 
             // Film_Name_TextBox
             // 
-            this.Film_Name_TextBox.Location = new System.Drawing.Point(266, 13);
+            this.Film_Name_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Film_Name_TextBox.Location = new System.Drawing.Point(312, 19);
             this.Film_Name_TextBox.Name = "Film_Name_TextBox";
-            this.Film_Name_TextBox.Size = new System.Drawing.Size(414, 22);
+            this.Film_Name_TextBox.Size = new System.Drawing.Size(414, 28);
             this.Film_Name_TextBox.TabIndex = 58;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(76, 18);
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(35, 22);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(130, 16);
+            this.label12.Size = new System.Drawing.Size(184, 22);
             this.label12.TabIndex = 59;
             this.label12.Text = "Название фильма:";
             // 

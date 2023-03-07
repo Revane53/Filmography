@@ -29,8 +29,8 @@ namespace Filmographys.View
                               "select * from Genders; select * from Genres;";
             human_command = "select * from Humans; select * from Actors;" +
                              "select * from Producers; select * from PresidentOfFilmStudio;";
-            dataSet = Connection.GetTable(command);
-            dataSet_humans = Connection.GetTable(human_command);
+            dataSet = Connection.GetTables(command);
+            dataSet_humans = Connection.GetTables(human_command);
 
             listBox1.DataSource = dataSet.Tables[0];
             listBox1.DisplayMember = "country_name";
@@ -194,7 +194,6 @@ namespace Filmographys.View
                 DataTable dt_0 = dataSet.Tables[0];
                 DataTable dt_1 = dataSet.Tables[1];
                 bool boo = false;
-                //Удаление из таблицы городов
                 for (int i = dt_1.Rows.Count - 1; i >= 0; i--)
                 {
                     DataRow dr_1 = dt_1.Rows[i];
@@ -207,7 +206,6 @@ namespace Filmographys.View
                 }
                 if(boo)
                     Connection.Delete(dt_1, com_1);
-                // Удаоение из таблицы стран
                 for (int i = dt_0.Rows.Count - 1; i >= 0; i--)
                 {
                     DataRow dr_0 = dt_0.Rows[i];
@@ -288,17 +286,17 @@ namespace Filmographys.View
         {
             int gender = (int)Gender_ComboBox.SelectedValue;
             int country = (int)Country_ComboBox.SelectedValue;
-            int residence = -1;
-            var res_id = from c in dataSet.Tables[1].AsEnumerable()
-                         where c.Field<string>("city_name") == City_ComboBox.SelectedItem.ToString()
-                         select c.Field<int>("city_id");
+            int residence = (int)City_ComboBox.SelectedValue;
             float annual_income = (int)Income_NumericUpDown.Value;
 
+            /* var res_id = from c in dataSet.Tables[1].AsEnumerable()
+                           where c.Field<string>("city_name") == City_ComboBox.SelectedItem.ToString()
+                           select c.Field<int>("city_id");*/
+            /*
             foreach (var item in res_id)
             {
                 residence = item;
-            }
-            ///тест
+            }*/
             string sqlExpression = "InsertUser";
             List< SqlParameter > parameters = new List< SqlParameter >();
             parameters.Add(new SqlParameter() {ParameterName = "@name", Value = Name_TextBox.Text});
@@ -318,7 +316,6 @@ namespace Filmographys.View
             newRow_human["residence"] = residence;
             newRow_human["annual_income"] = annual_income;
             dt_human.Rows.Add(newRow_human);
-            ///конец теста
             
             string com;
             if (Actors_CheckBox.Checked)
@@ -349,8 +346,6 @@ namespace Filmographys.View
                 dt_presidentOfFilmStudio.Rows.Add(newRow_presidentOfFilmStudio);
                 Connection.InserToTable(dt_presidentOfFilmStudio, com);
             }
-
-
         }
     }
 }

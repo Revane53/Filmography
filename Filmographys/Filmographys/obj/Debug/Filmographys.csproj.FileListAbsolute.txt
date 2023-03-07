@@ -4,8 +4,6 @@ C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmog
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.csproj.AssemblyReference.cache
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.csproj.SuggestedBindingRedirects.cache
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.Properties.Resources.resources
-C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.View.AddFilms.resources
-C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.View.Film_card.resources
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.csproj.GenerateResource.cache
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.csproj.CoreCompileInputs.cache
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.exe
@@ -14,3 +12,7 @@ C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmog
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.View.MainForm.resources
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.View.MaintainingDirectoryForm.resources
 C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.View.AlarmForm.resources
+C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.View.Film_card_Form.resources
+C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\bin\Debug\Pbkdf2.dll
+C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.csproj.CopyComplete
+C:\Users\revan\OneDrive\Рабочий стол\Курсач\Filmographys\Filmographys\obj\Debug\Filmographys.View.AddFilmsForm.resources

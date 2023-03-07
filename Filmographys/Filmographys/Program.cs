@@ -17,7 +17,7 @@ namespace Filmographys
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MaintainingDirectoryForm());
+            Application.Run(new MainForm());
         }
     }
 }
