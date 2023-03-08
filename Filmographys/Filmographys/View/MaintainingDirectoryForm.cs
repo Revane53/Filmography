@@ -239,57 +239,68 @@ namespace Filmographys.View
 
         private void Add_Human_Button_Click(object sender, EventArgs e)
         {
-            int gender = (int)Gender_ComboBox.SelectedValue;
-            int country = (int)Country_ComboBox.SelectedValue;
-            int residence = (int)City_ComboBox.SelectedValue;
-            float annual_income = (int)Income_NumericUpDown.Value;
-            string sqlExpression = "InsertUser";
-            List< SqlParameter > parameters = new List< SqlParameter >();
-            parameters.Add(new SqlParameter() {ParameterName = "@name", Value = Name_TextBox.Text});
-            parameters.Add(new SqlParameter() {ParameterName = "@surname", Value = Surname_TextBox.Text});
-            parameters.Add(new SqlParameter() {ParameterName = "@gender", Value = gender});
-            parameters.Add(new SqlParameter() {ParameterName = "@country", Value = country});
-            parameters.Add(new SqlParameter() {ParameterName = "@residence", Value = residence});
-            parameters.Add(new SqlParameter() {ParameterName = "@annual_income", Value = annual_income});
-            int human_id = Connection.Test(sqlExpression, parameters);
-            DataTable dt_human = dataSet_humans.Tables[0];
-            DataRow newRow_human = dt_human.NewRow();
-            newRow_human["human_id"] = human_id;
-            newRow_human["name"] = Name_TextBox.Text;
-            newRow_human["surname"] = Surname_TextBox.Text;
-            newRow_human["gender"] = gender;
-            newRow_human["country"] = country;
-            newRow_human["residence"] = residence;
-            newRow_human["annual_income"] = annual_income;
-            dt_human.Rows.Add(newRow_human);
-            
-            string com;
-            if (Actors_CheckBox.Checked)
+            if (Name_TextBox.Text == "" && Surname_TextBox.Text == "" && Gender_ComboBox.SelectedIndex >= 0
+                && Country_ComboBox.SelectedIndex >= 0 && City_ComboBox.SelectedIndex >= 0 && (Actors_CheckBox.Checked
+                && Producer_CheckBox.Checked && President_CheckBox.Checked))
             {
-                com = $@"insert into Actors (human_id) values ({human_id})";
-                DataTable dt_actors = dataSet_humans.Tables[1];
-                DataRow newRow_actors = dt_actors.NewRow();
-                newRow_actors["human_id"] = human_id;
-                dt_actors.Rows.Add(newRow_actors);
-                Connection.InserToTable(dt_actors, com);
-            }
-            if (Producer_CheckBox.Checked)
-            {
-                com = $@"insert into Producers (human_id) values ({human_id})";
-                DataTable dt_producers = dataSet_humans.Tables[2];
-                DataRow newRow_producers = dt_producers.NewRow();
-                newRow_producers["human_id"] = human_id;
-                dt_producers.Rows.Add(newRow_producers);
-                Connection.InserToTable(dt_producers, com);
-            }
-            if (President_CheckBox.Checked)
-            {
-                com = $@"insert into PresidentOfFilmStudio (human_id) values ({human_id})";
-                DataTable dt_presidentOfFilmStudio = dataSet_humans.Tables[3];
-                DataRow newRow_presidentOfFilmStudio = dt_presidentOfFilmStudio.NewRow();
-                newRow_presidentOfFilmStudio["human_id"] = human_id;
-                dt_presidentOfFilmStudio.Rows.Add(newRow_presidentOfFilmStudio);
-                Connection.InserToTable(dt_presidentOfFilmStudio, com);
+                int gender = (int)Gender_ComboBox.SelectedValue;
+                int country = (int)Country_ComboBox.SelectedValue;
+                int residence = (int)City_ComboBox.SelectedValue;
+                float annual_income = (int)Income_NumericUpDown.Value;
+                string sqlExpression = "InsertUser";
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter() { ParameterName = "@name", Value = Name_TextBox.Text });
+                parameters.Add(new SqlParameter() { ParameterName = "@surname", Value = Surname_TextBox.Text });
+                parameters.Add(new SqlParameter() { ParameterName = "@gender", Value = gender });
+                parameters.Add(new SqlParameter() { ParameterName = "@country", Value = country });
+                parameters.Add(new SqlParameter() { ParameterName = "@residence", Value = residence });
+                parameters.Add(new SqlParameter() { ParameterName = "@annual_income", Value = annual_income });
+                int human_id = Connection.Test(sqlExpression, parameters);
+                DataTable dt_human = dataSet_humans.Tables[0];
+                DataRow newRow_human = dt_human.NewRow();
+                newRow_human["human_id"] = human_id;
+                newRow_human["name"] = Name_TextBox.Text;
+                newRow_human["surname"] = Surname_TextBox.Text;
+                newRow_human["gender"] = gender;
+                newRow_human["country"] = country;
+                newRow_human["residence"] = residence;
+                newRow_human["annual_income"] = annual_income;
+                dt_human.Rows.Add(newRow_human);
+
+                string com;
+                if (Actors_CheckBox.Checked)
+                {
+                    com = $@"insert into Actors (human_id) values ({human_id})";
+                    DataTable dt_actors = dataSet_humans.Tables[1];
+                    DataRow newRow_actors = dt_actors.NewRow();
+                    newRow_actors["human_id"] = human_id;
+                    dt_actors.Rows.Add(newRow_actors);
+                    Connection.InserToTable(dt_actors, com);
+                }
+                if (Producer_CheckBox.Checked)
+                {
+                    com = $@"insert into Producers (human_id) values ({human_id})";
+                    DataTable dt_producers = dataSet_humans.Tables[2];
+                    DataRow newRow_producers = dt_producers.NewRow();
+                    newRow_producers["human_id"] = human_id;
+                    dt_producers.Rows.Add(newRow_producers);
+                    Connection.InserToTable(dt_producers, com);
+                }
+                if (President_CheckBox.Checked)
+                {
+                    com = $@"insert into PresidentOfFilmStudio (human_id) values ({human_id})";
+                    DataTable dt_presidentOfFilmStudio = dataSet_humans.Tables[3];
+                    DataRow newRow_presidentOfFilmStudio = dt_presidentOfFilmStudio.NewRow();
+                    newRow_presidentOfFilmStudio["human_id"] = human_id;
+                    dt_presidentOfFilmStudio.Rows.Add(newRow_presidentOfFilmStudio);
+                    Connection.InserToTable(dt_presidentOfFilmStudio, com);
+                }
+                Name_TextBox.Text = "";
+                Surname_TextBox.Text = "";
+                Gender_ComboBox.SelectedIndex = -1;
+                City_ComboBox.SelectedIndex = -1;
+                Country_ComboBox.SelectedIndex = -1;
+                Income_NumericUpDown.Value = 0;
             }
         }
     }
