@@ -350,8 +350,9 @@
             this.Country_View_ListBox.Name = "Country_View_ListBox";
             this.Country_View_ListBox.Size = new System.Drawing.Size(259, 164);
             this.Country_View_ListBox.TabIndex = 60;
+            this.Country_View_ListBox.SelectedIndexChanged += new System.EventHandler(this.Country_View_ListBox_SelectedIndexChanged);
             // 
-            // AddFilms
+            // AddFilmsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -386,7 +387,7 @@
             this.Controls.Add(this.Description_TextBox);
             this.Controls.Add(this.Add_Picture_Button);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "AddFilms";
+            this.Name = "AddFilmsForm";
             this.Text = "AddFilms";
             ((System.ComponentModel.ISupportInitialize)(this.Viewers_NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Budget_NumericUpDown)).EndInit();

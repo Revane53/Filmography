@@ -102,38 +102,12 @@ namespace Filmographys.View
                 parameters.Add(new SqlParameter() { ParameterName = "@year_of_release", Value = Filme_release_DateTimePicker.Value });
                 int film_id = Connection.Test(sqlExpression, parameters);
                 string command = "";
-                /*DataTable President = dataSet.Tables[6];
-                DataTable Producer = dataSet.Tables[7];
-                DataTable Actors = dataSet.Tables[8];
-                DataTable Genre = dataSet.Tables[10];
-                DataTable Country = dataSet.Tables[9];*/
                 List<DataTable> dataTables = new List<DataTable>();
                 dataTables.Add(dataSet.Tables[9]);
                 dataTables.Add(dataSet.Tables[6]);
                 dataTables.Add(dataSet.Tables[7]);
                 dataTables.Add(dataSet.Tables[8]);
                 dataTables.Add(dataSet.Tables[10]);
-                /*
-                DataTable President = new DataTable();
-                President.Columns.Add("film_id");
-                President.Columns.Add("president_id");
-                DataRow PresidentRow = President.NewRow();                
-                DataTable Producer = new DataTable();
-                Producer.Columns.Add("film_id");
-                Producer.Columns.Add("producer_id");
-                DataRow ProducerRow = Producer.NewRow();
-                DataTable Actors = new DataTable();
-                Actors.Columns.Add("film_id");
-                Actors.Columns.Add("actor_id");
-                DataRow ActorsRow = Actors.NewRow();
-                DataTable Genre = new DataTable();
-                Genre.Columns.Add("film_id");
-                Genre.Columns.Add("genre_id");
-                DataRow GenreRow = Genre.NewRow();
-                DataTable Country = new DataTable();
-                Country.Columns.Add("film_id");
-                Country.Columns.Add("country_id");
-                DataRow CountryRow = Country.NewRow();*/
                 DataRow CountryRow = dataTables[0].NewRow();
                 DataRow PresidentRow = dataTables[1].NewRow();
                 DataRow ProducerRow = dataTables[2].NewRow();
@@ -172,7 +146,6 @@ namespace Filmographys.View
                                 CountryRow["country_id"] = item;
                                 break;
                         }
-
                     }
                     switch (i)
                     {
@@ -192,21 +165,10 @@ namespace Filmographys.View
                             dataTables[4].Rows.Add(GenreRow);
                             break;
                     }
-
-                    //if (command == "")
-                    //    return;
-                    /* DataSet ds = new DataSet();
-                     ds.Tables.Add(President);
-                     ds.Tables.Add(Producer);
-                     ds.Tables.Add(Actors);
-                     ds.Tables.Add(Genre);
-                     ds.Tables.Add(Country);*/
-                    // Connection.InserToTable(dataSet, command);
                     if (command == "")
                         return;
                     Connection.InserToTable(dataTables[i], command);
                     command = "";
-
                 }
                 reset_form_info();
             } else
@@ -243,7 +205,6 @@ namespace Filmographys.View
                 Choosing_ListBox.DataSource = boundTable;
                 Choosing_ListBox.DisplayMember = "Sum";
                 Choosing_ListBox.ValueMember = boundTable.Columns[0].ColumnName;
-
             }
             else
             {
@@ -259,9 +220,6 @@ namespace Filmographys.View
                 DataTable dataTable = dataSet.Tables[Choosing_Category_ComboBox.SelectedIndex];
                 formListBoxs[Choosing_Category_ComboBox.SelectedIndex].Items.Add(Choosing_ListBox.Text);
                 int res = 0;
-               // if (Choosing_Category_ComboBox.SelectedIndex != 4)
-               // {
-                    
                     if (Choosing_Category_ComboBox.SelectedIndex != 0 && Choosing_Category_ComboBox.SelectedIndex != 4)
                     {
                         var profession_id = from id in dataTable.AsEnumerable()
@@ -272,21 +230,12 @@ namespace Filmographys.View
                         {
                             int.TryParse((item[0]).ToString(), out res);
                             id_Choosing_ListBox_items[Choosing_Category_ComboBox.SelectedIndex].Add(res);
-
                         }
-
                     }
                     else
                     {
                         id_Choosing_ListBox_items[Choosing_Category_ComboBox.SelectedIndex].Add((int)Choosing_ListBox.SelectedValue);
                     }
-              //  } else
-             //   {
-             //       id_Choosing_ListBox_items[Choosing_Category_ComboBox.SelectedIndex].Add(res);
-             //   }
-                //int.TryParse(Choosing_ListBox.SelectedValue.ToString(), out res);
-                //int.TryParse((profession_id.FirstOrDefault()).ToString(), out res);
-               // id_Choosing_ListBox_items[Choosing_Category_ComboBox.SelectedIndex].Add(res);
             }
         }
         private void PresidentOfFilmStudio_ListBox_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -300,22 +249,23 @@ namespace Filmographys.View
             {
                 case listbox_name.PresidentOfFilmStudio_ListBox:
                     PresidentOfFilmStudio_ListBox.Items.RemoveAt(selected_index);
-                    id_Choosing_ListBox_items[0].RemoveAt(selected_index);
+                    id_Choosing_ListBox_items[1].RemoveAt(selected_index);
                     break;
                 case listbox_name.Producers_ListBox:
                     Producers_ListBox.Items.RemoveAt(selected_index);
-                    id_Choosing_ListBox_items[1].RemoveAt(selected_index);
-
+                    id_Choosing_ListBox_items[2].RemoveAt(selected_index);
                     break;
                 case listbox_name.Actors_ListBox:
                     Actors_ListBox.Items.RemoveAt(selected_index);
-                    id_Choosing_ListBox_items[2].RemoveAt(selected_index);
-
+                    id_Choosing_ListBox_items[3].RemoveAt(selected_index);
                     break;
                 case listbox_name.Genres_ListBox:
                     Genres_ListBox.Items.RemoveAt(selected_index);
-                    id_Choosing_ListBox_items[3].RemoveAt(selected_index);
-
+                    id_Choosing_ListBox_items[4].RemoveAt(selected_index);
+                    break;
+                case listbox_name.Country_View_ListBox:
+                    Country_View_ListBox.Items.RemoveAt(selected_index);
+                    id_Choosing_ListBox_items[0].RemoveAt(selected_index);
                     break;
             }
         }
@@ -337,6 +287,12 @@ namespace Filmographys.View
                 Del_items(listbox_name.Genres_ListBox, Genres_ListBox.SelectedIndex);
 
         }
+        private void Country_View_ListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Country_View_ListBox.SelectedIndex >= 0)
+                Del_items(listbox_name.Country_View_ListBox, Country_View_ListBox.SelectedIndex);
+        }
+
         private void reset_form_info()
         {
             Budget_NumericUpDown.Value = 0;
@@ -364,6 +320,5 @@ namespace Filmographys.View
             }
             return false;
         }
-
     }
 }

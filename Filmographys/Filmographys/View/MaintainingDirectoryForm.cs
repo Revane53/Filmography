@@ -21,12 +21,8 @@ namespace Filmographys.View
         public MaintainingDirectoryForm()
         {
             InitializeComponent();
-            ConnectionToDatabase();
-        }
-        private void ConnectionToDatabase()
-        {
             command = "select * from Country; select * from Citys;" +
-                              "select * from Genders; select * from Genres;";
+                  "select * from Genders; select * from Genres;";
             human_command = "select * from Humans; select * from Actors;" +
                              "select * from Producers; select * from PresidentOfFilmStudio;";
             dataSet = Connection.GetTables(command);
@@ -64,13 +60,11 @@ namespace Filmographys.View
         {
             if (textBox3.Text != "")
             {
-
                 string com = $@"insert into Genders (gender_name) values ('{textBox3.Text.ToString()}');";
                 DataTable dt = dataSet.Tables[2];
                 DataRow newRow = dt.NewRow();
                 newRow["gender_name"] = textBox3.Text.ToString();
                 dt.Rows.Add(newRow);
-
                 Connection.InserToTable(dt, com);
                 textBox3.Text = "";
             }
@@ -82,7 +76,6 @@ namespace Filmographys.View
             DataTable dt = dataSet.Tables[2];
             for (int i = dt.Rows.Count - 1; i >= 0; i--)
             {
-
                 DataRow dr = dt.Rows[i];
                 if (dr["gender_name"].ToString() == listBox3.Text)
                 {
@@ -97,7 +90,6 @@ namespace Filmographys.View
         {
             if (textBox4.Text != "")
             {
-
                 string com = $@"insert into Genres (genre_name) values ('{textBox4.Text.ToString()}');";
                 DataTable dt = dataSet.Tables[3];
                 DataRow newRow = dt.NewRow();
@@ -114,7 +106,6 @@ namespace Filmographys.View
             string com = $@"DELETE FROM Genres where genre_name = '{listBox4.Text}';";
                      
             DataTable dt = dataSet.Tables[3];
-            //DataRow newRow = dt.NewRow();
             for (int i = dt.Rows.Count - 1; i >= 0; i--)
             {
 
@@ -124,7 +115,6 @@ namespace Filmographys.View
                     dr.Delete();
                     break;
                 }
-                //Connection.Delete(dt, com);
             }
             Connection.Delete(dt, com);
         }
@@ -133,25 +123,14 @@ namespace Filmographys.View
         {
             if (listBox1.Items.Count < 0 || listBox1.SelectedIndex < 0)
                 return;
-            listBox2.Items.Clear();/*
-           var res_id_country = from c in dataSet.Tables[0].AsEnumerable()
-                      where c.Field<string>("country_name") == listBox1.Text
-                      select c.Field<int>("country_id");
-            
-            foreach (var item in res_id_country)
-            {
-                id_country = item;
-            }*/
+            listBox2.Items.Clear();
             int.TryParse(listBox1.SelectedValue.ToString(), out id_country);
             
             var res_name_city = from c in dataSet.Tables[1].AsEnumerable()
                   where c.Field<int>("country_id") == id_country
                   select c.Field<string>("city_name");
             foreach (var item in res_name_city)
-            {
                 listBox2.Items.Add(item);
-            }
-            
         }
 
         private void Add_Country_Button_Click(object sender, EventArgs e)
@@ -160,24 +139,14 @@ namespace Filmographys.View
             {
                 string sqlExpression = "InsertCountry";
                 List<SqlParameter> parameters = new List<SqlParameter>();
-                parameters.Add(new SqlParameter()
-                {
-                    ParameterName = "@country_name",
-                    Value = textBox1.Text
-                });
-               // string com = $@"insert into Country (country_name) values ('{textBox1.Text.ToString()}');";
+                parameters.Add(new SqlParameter(){ParameterName = "@country_name", Value = textBox1.Text});
                 DataTable dt = dataSet.Tables[0];
-               // DataRow newRow = dataSet.Tables[0].NewRow();
                 DataRow newRow = dt.NewRow();
                 newRow["country_name"] = textBox1.Text.ToString();
                 newRow["country_id"] = (int)Connection.Test(sqlExpression,parameters);
-                //dt.Rows.Add(newRow);
                 dataSet.Tables[0].Rows.Add(newRow);
-
-                //Connection.updatecom(dataSet.Tables[0], "select * from country;");
-                //Connection.InserToTable(dt, com);
+                dataSet.AcceptChanges();
                 textBox1.Text = "";
-               // ConnectionToDatabase();
             }
 
         }
@@ -188,34 +157,32 @@ namespace Filmographys.View
             if (true)//alarmForm.ShowDialog() == DialogResult.OK)
             {
                 listBox1_SelectedIndexChanged(this, e);
-                string com_0 = $@"DELETE FROM Country where country_id = '{id_country}';";
+                string com_0 = $@"DELETE FROM Country where country_id = {id_country};";
                 string com_1 = $@"DELETE FROM Citys where country_id = {id_country};";
 
-                DataTable dt_0 = dataSet.Tables[0];
-                DataTable dt_1 = dataSet.Tables[1];
                 bool boo = false;
-                for (int i = dt_1.Rows.Count - 1; i >= 0; i--)
+                for (int i = dataSet.Tables[1].Rows.Count - 1; i >= 0; i--)
                 {
-                    DataRow dr_1 = dt_1.Rows[i];
+                    DataRow dr_1 = dataSet.Tables[1].Rows[i];
                     if ((int)dr_1["country_id"] == id_country)
-                    {
-                        dr_1.Delete();
+                    { 
+                           dataSet.Tables[1].Rows[i].Delete();
                         boo = true;
                         break;
                     }
                 }
                 if(boo)
-                    Connection.Delete(dt_1, com_1);
-                for (int i = dt_0.Rows.Count - 1; i >= 0; i--)
+                   Connection.Delete(dataSet.Tables[1],com_1);
+                for (int i = dataSet.Tables[0].Rows.Count - 1; i >= 0; i--)
                 {
-                    DataRow dr_0 = dt_0.Rows[i];
+                    DataRow dr_0 = dataSet.Tables[0].Rows[i];
                     if ((int)dr_0["country_id"] == id_country)
                     {
-                        dr_0.Delete();
+                        dataSet.Tables[0].Rows[i].Delete();
                         break;
                     }
                 }
-                Connection.Delete(dt_0, com_0);
+                Connection.Delete(dataSet.Tables[0], com_0);
             }
         }
 
@@ -237,7 +204,6 @@ namespace Filmographys.View
 
         private void Delete_City_Button_Click(object sender, EventArgs e)
         {
-            // string com = $@"DELETE FROM Citys where city_name = '{listBox2.Text}';";
             string com = $@"DELETE FROM Citys where city_name = '{listBox2.Text}';";
 
             DataTable dt = dataSet.Tables[1];
@@ -257,19 +223,9 @@ namespace Filmographys.View
 
         private void Country_ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // City_ComboBox.Items.Clear();
             if (Country_ComboBox.SelectedIndex < 0)
                 return;
             int.TryParse(Country_ComboBox.SelectedValue.ToString(), out id_country_combobox);
-            /*
-            var res_name_city = from c in dataSet.Tables[1].AsEnumerable()
-                                where c.Field<int>("country_id") == id_country_combobox
-                                select c.Field<string>("city_name");
-            foreach (var item in res_name_city)
-            {
-                City_ComboBox.Items.Add(item);
-            }
-            */
             IEnumerable<DataRow> res_name_city = from c in dataSet.Tables[1].AsEnumerable()
                                 where c.Field<int>("country_id") == id_country_combobox
                                 select c;
@@ -279,7 +235,6 @@ namespace Filmographys.View
             City_ComboBox.DataSource = res_name_city.CopyToDataTable<DataRow>();
             City_ComboBox.DisplayMember = "city_name";
             City_ComboBox.ValueMember = "city_id";
-            //var f = dataSet.Tables[1].AsEnumerable().Where(r => r.Field<int>("country_id") == id_country_combobox).Select(r => r.Field<int>("city_name"));
         }
 
         private void Add_Human_Button_Click(object sender, EventArgs e)
@@ -288,15 +243,6 @@ namespace Filmographys.View
             int country = (int)Country_ComboBox.SelectedValue;
             int residence = (int)City_ComboBox.SelectedValue;
             float annual_income = (int)Income_NumericUpDown.Value;
-
-            /* var res_id = from c in dataSet.Tables[1].AsEnumerable()
-                           where c.Field<string>("city_name") == City_ComboBox.SelectedItem.ToString()
-                           select c.Field<int>("city_id");*/
-            /*
-            foreach (var item in res_id)
-            {
-                residence = item;
-            }*/
             string sqlExpression = "InsertUser";
             List< SqlParameter > parameters = new List< SqlParameter >();
             parameters.Add(new SqlParameter() {ParameterName = "@name", Value = Name_TextBox.Text});
@@ -335,7 +281,6 @@ namespace Filmographys.View
                 newRow_producers["human_id"] = human_id;
                 dt_producers.Rows.Add(newRow_producers);
                 Connection.InserToTable(dt_producers, com);
-
             }
             if (President_CheckBox.Checked)
             {
