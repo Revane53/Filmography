@@ -38,6 +38,22 @@
             this.Asc_RadioButton = new System.Windows.Forms.RadioButton();
             this.Desc_RadioButton = new System.Windows.Forms.RadioButton();
             this.Sort_Button = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.Genre_ComboBox = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker_1 = new System.Windows.Forms.DateTimePicker();
+            this.Search_button = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Reset_Button = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dateTimePicker_2 = new System.Windows.Forms.DateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -143,11 +159,144 @@
             this.Sort_Button.UseVisualStyleBackColor = true;
             this.Sort_Button.Click += new System.EventHandler(this.Sort_Button_Click);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(307, 214);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(93, 22);
+            this.numericUpDown1.TabIndex = 10;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(451, 210);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(107, 22);
+            this.numericUpDown2.TabIndex = 11;
+            // 
+            // Genre_ComboBox
+            // 
+            this.Genre_ComboBox.FormattingEnabled = true;
+            this.Genre_ComboBox.Location = new System.Drawing.Point(339, 250);
+            this.Genre_ComboBox.Name = "Genre_ComboBox";
+            this.Genre_ComboBox.Size = new System.Drawing.Size(198, 24);
+            this.Genre_ComboBox.TabIndex = 12;
+            // 
+            // dateTimePicker_1
+            // 
+            this.dateTimePicker_1.Location = new System.Drawing.Point(328, 310);
+            this.dateTimePicker_1.Name = "dateTimePicker_1";
+            this.dateTimePicker_1.Size = new System.Drawing.Size(209, 22);
+            this.dateTimePicker_1.TabIndex = 13;
+            // 
+            // Search_button
+            // 
+            this.Search_button.Location = new System.Drawing.Point(543, 245);
+            this.Search_button.Name = "Search_button";
+            this.Search_button.Size = new System.Drawing.Size(254, 48);
+            this.Search_button.TabIndex = 14;
+            this.Search_button.Text = "Найти";
+            this.Search_button.UseVisualStyleBackColor = true;
+            this.Search_button.Click += new System.EventHandler(this.Search_button_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(283, 179);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(134, 16);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Стоимость фильма:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(277, 216);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(24, 16);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "От";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(406, 214);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(24, 16);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "До";
+            // 
+            // Reset_Button
+            // 
+            this.Reset_Button.Location = new System.Drawing.Point(543, 299);
+            this.Reset_Button.Name = "Reset_Button";
+            this.Reset_Button.Size = new System.Drawing.Size(254, 48);
+            this.Reset_Button.TabIndex = 18;
+            this.Reset_Button.Text = "Сбросить";
+            this.Reset_Button.UseVisualStyleBackColor = true;
+            this.Reset_Button.Click += new System.EventHandler(this.Reset_Button_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(283, 258);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 16);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Жанр";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(283, 288);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(92, 16);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Дата выхода:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(283, 315);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 16);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "От";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(283, 357);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(24, 16);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "До";
+            // 
+            // dateTimePicker_2
+            // 
+            this.dateTimePicker_2.Location = new System.Drawing.Point(328, 351);
+            this.dateTimePicker_2.Name = "dateTimePicker_2";
+            this.dateTimePicker_2.Size = new System.Drawing.Size(209, 22);
+            this.dateTimePicker_2.TabIndex = 23;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dateTimePicker_2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.Reset_Button);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.Search_button);
+            this.Controls.Add(this.dateTimePicker_1);
+            this.Controls.Add(this.Genre_ComboBox);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.Sort_Button);
             this.Controls.Add(this.Desc_RadioButton);
             this.Controls.Add(this.Asc_RadioButton);
@@ -160,6 +309,8 @@
             this.Controls.Add(this.label1);
             this.Name = "MainForm";
             this.Text = "MainForm";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +328,19 @@
         private System.Windows.Forms.RadioButton Asc_RadioButton;
         private System.Windows.Forms.RadioButton Desc_RadioButton;
         private System.Windows.Forms.Button Sort_Button;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.ComboBox Genre_ComboBox;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_1;
+        private System.Windows.Forms.Button Search_button;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button Reset_Button;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_2;
     }
 }
